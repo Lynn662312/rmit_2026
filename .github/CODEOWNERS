@@ -1,0 +1,15 @@
+# Replace every placeholder below with the matching GitHub username or team.
+# Examples: @cynthia-github or @your-org/cynthia-team
+# GitHub applies these rules only after the placeholders are replaced with
+# valid accounts/teams and the branch-protection option "Require review from
+# Code Owners" is enabled.
+
+/Cynthia/ @REPLACE_WITH_CYNTHIA_GITHUB_USERNAME
+/dana/    @REPLACE_WITH_DANA_GITHUB_USERNAME
+/lynn/    @REPLACE_WITH_LYNN_GITHUB_USERNAME
+/xy/      @REPLACE_WITH_XY_GITHUB_USERNAME
+
+# Shared files need a team-level agreement. Replace with a GitHub team or
+# list every member individually, e.g. @alice @bob @charlie @dana.
+/shared/  @REPLACE_WITH_TEAM_OR_GITHUB_USERNAMES
+/docs/    @REPLACE_WITH_TEAM_OR_GITHUB_USERNAMES
