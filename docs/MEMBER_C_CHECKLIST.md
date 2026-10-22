@@ -48,6 +48,9 @@
 
 ## Phase 3: Integration (needs A + B)
 
+- [x] Backup frontend written by C on `feature/integration` (`features/ui/*`, `app/ui-preview/`): use only if B's UI is not ready
+- [x] `app/home/page.jsx` composition written (`useSafeSpeakSecurity` → `makeReportsClient` → `SafeSpeakApp`)
+- [ ] Backup UI compiles and `/ui-preview` renders (needs `npm install` from A's starter)
 - [ ] ⛔ B hands off `features/ui/` (uses `makeReportsClient`)
 - [ ] ⛔ A hands off `features/security/useSafeSpeakSecurity.js`
 - [ ] Create `app/home/page.jsx` (or the starter's post-login route) wiring `useSafeSpeakSecurity` → `makeReportsClient(security.token)` → `<SafeSpeakApp />`
