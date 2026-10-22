@@ -2,25 +2,22 @@
 
 Private team repository for the RMIT 2026 hackathon.
 
-## Workspace ownership
+## Project structure
 
-| Folder | Owner | Purpose |
-| --- | --- | --- |
-| `Cynthia/` | Cynthia | Cynthia's feature and notes |
-| `dana/` | Dana | Dana's feature and notes |
-| `lynn/` | Lynn | Lynn's feature and notes |
-| `xuanyu/` | XY | XY's feature and notes |
-| `shared/` | Whole team | Deliberately shared code, assets, and interfaces |
-| `docs/` | Whole team | Planning, design, and project documentation |
+| Folder | Purpose |
+| --- | --- |
+| `frontend/` | Client application, UI, and frontend tests |
+| `backend/` | API, services, data access, and backend tests |
+| `docs/` | Planning, design, API agreements, and project documentation |
 
-Do work in your own folder. Make changes to `shared/` only through a pull request agreed by the team.
+Work is organized by application layer, not by contributor. Coordinate through pull requests when a change spans the frontend and backend.
 
 ## First-time setup
 
 ```powershell
 git clone <YOUR-PRIVATE-REPOSITORY-URL>
 cd rmit_2026
-git switch -c feature/<your-name>-<short-task>
+git switch -c feature/<short-task>
 ```
 
 Before opening a pull request:
