@@ -149,3 +149,180 @@
 @media (max-width:760px) { .header { min-height:80px; padding:16px 20px; } .headerCaption { display:none; } .main { padding:30px 20px 20px; } .root h1 { font-size:36px; } .pageHeading { align-items:flex-start; gap:10px; margin-bottom:26px; } .pageHeading p { font-size:13px; } .sessionBadge { font-size:10px; padding:5px 8px; margin-top:5px; } .submitGrid { grid-template-columns:1fr; } .supportColumn { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .supportArt { height:230px; } .supportArt > div { left:20px; bottom:20px; } .supportArt h2 { font-size:22px; } .supportArt > .wisteria { top:-40px; } .privacyCard { padding:20px; } .emergencyNote { grid-column:1/-1; } .formCard { padding:24px; } .footer { padding:12px 20px 24px; flex-direction:column; gap:5px; } .landing { grid-template-columns:1fr; padding:15px 0; gap:32px; } .landing h1 { font-size:54px; } .landingArt { min-height:290px; max-width:400px; width:100%; margin:auto; } .landingArt > .wisteria { top:-40px; } .artNote { bottom:26px; } .intro { font-size:15px; } .reviewGrid { grid-template-columns:1fr; min-height:420px; } .reportList { border:0; } .reportDetail { display:none; padding:22px; } .showDetail .reportList { display:none; } .showDetail .reportDetail { display:block; } .mobileBack { display:inline-flex; margin-bottom:20px; } .reportItems { max-height:none; } }
 @media (max-width:460px) { .brand { font-size:22px; } .pageHeading { flex-direction:column; } .sessionBadge { margin-top:0; } .formCard { padding:20px; border-radius:16px; } .cardHeading { margin-bottom:20px; padding-bottom:20px; } .cardHeading h2 { font-size:17px; } .fieldFooter { align-items:flex-start; font-size:9px; } .fieldFooter > span:last-child { white-space:nowrap; } .submitRow { flex-direction:column; align-items:stretch; } .submitRow .primaryButton { width:100%; } .supportColumn { grid-template-columns:1fr; } .supportArt { height:255px; } .supportArt > .wisteria { top:-55px; } .supportArt > div { bottom:24px; } .tabs button { padding:10px 8px; font-size:12px; } .success { padding:0; } .success h2 { font-size:26px; } .receipt > div { flex-direction:column; gap:1px; } .receipt dd { text-align:left; } .contentHeading { align-items:flex-start; flex-direction:column; } }
 @media (prefers-reduced-motion:reduce) { .root *, .root *::before, .root *::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } .envelope { transform:translateY(57px) scale(.65); } }
+
+/* Watercolor reference design. Presentation overrides only; adapter logic is unchanged. */
+.root {
+  --ink:#291e35; --muted:#746a83; --purple:#9574a8; --line:#e2d9eb; --green:#e7efe2;
+  position:relative; isolation:isolate; background:#fcfaf7 url('./assets/wisteria-garden.webp') center top / 100% auto no-repeat;
+  font-family:Arial,Helvetica,sans-serif;
+}
+.header { max-width:848px; min-height:104px; padding:49px 0 10px; border:0; position:relative; left:76px; gap:24px; }
+.brand { font-size:30px; letter-spacing:-1.5px; gap:13px; line-height:1.2; }
+.brandMark { width:44px; height:44px; border-radius:13px; background:#e7efe2; color:#50734b; }
+.brandMark svg { width:28px; height:28px; }
+.headerCaption { display:none; }
+.header > .textButton { font-size:16px; gap:12px; margin-left:20px; }
+.header > .textButton svg { width:23px; height:23px; }
+.roleMenu { margin-left:auto; }
+.roleCaption { display:none; }
+.roleTrigger { border:1px solid #e0d5e9; border-radius:17px; min-height:36px; padding:8px 15px; gap:15px; background:#fcfaf799; }
+.roleTrigger > span { font-size:13px; }
+.roleDropdown { margin-top:0; border-radius:16px; padding:12px; }
+.main { max-width:1110px; padding:24px 0 0; position:relative; left:43px; }
+.pageHeading { display:block; text-align:center; margin-bottom:40px; position:relative; left:-43px; }
+.eyebrow { font-size:12px; letter-spacing:.23em; color:#7e5c97; line-height:20px; }
+.root h1 { font-family:'Times New Roman',Times,serif; font-size:64px; font-weight:400; line-height:1.15; letter-spacing:-1.3px; margin:2px 0 0; }
+.pageHeading p { color:#6f637e; font-size:21px; line-height:32px; }
+.sessionBadge { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); padding:0; border:0; white-space:nowrap; }
+.submitGrid { grid-template-columns:minmax(0,748px) minmax(0,340px); gap:22px; align-items:start; }
+.formCard { border:1px solid #ded4e9; border-radius:24px; padding:32px 32px 24px; background:rgba(255,255,255,.94); box-shadow:0 15px 40px #5e466608; backdrop-filter:blur(2px); }
+.cardHeading { gap:22px; padding-bottom:24px; margin-bottom:24px; border-color:#e9e3ef; }
+.cardHeading .iconTile { width:58px; height:58px; border-radius:17px; background:#f3edf9; color:#80539e; }
+.cardHeading .iconTile svg { width:30px; height:30px; }
+.cardHeading h2 { font-size:24px; line-height:30px; letter-spacing:-.8px; }
+.cardHeading p { font-size:18px; line-height:27px; margin-top:4px; color:#85778f; }
+.cardHeading .smallBadge { display:none; }
+.label { font-size:18px; line-height:27px; margin-bottom:16px; letter-spacing:-.4px; }
+.fieldHelp { position:absolute; width:1px; height:1px; margin:-1px!important; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+.root textarea { display:block; height:206px; min-height:206px; padding:20px 22px; font-size:18px; line-height:1.7; border-radius:11px; border-color:#d9cce6; background:#faf7fd; color:#36283e; }
+.root textarea::placeholder { color:#867794; }
+.root textarea:focus { border-color:#a488b5; box-shadow:0 0 0 3px #b9a0cc1f; }
+.fieldFooter { margin-top:14px; font-size:13px; line-height:20px; color:#82758f; gap:16px; }
+.fieldFooter > span:first-child { gap:8px; }
+.fieldFooter svg { width:17px; height:17px; }
+.submitRow { margin-top:20px; padding-top:17px; border-color:#e7dfed; gap:16px; }
+.submitRow p { font-size:14px; line-height:22px; color:#83758d; }
+.primaryButton { background:linear-gradient(115deg,#9774ab,#9b80ac); border:1px solid #b49bc5; box-shadow:inset 0 1px 2px #ffffff33; border-radius:12px; min-height:64px; padding:16px 24px; font-size:20px; gap:14px; font-weight:400; }
+.primaryButton:disabled { opacity:.85; }
+.primaryButton svg { width:23px; height:23px; }
+.primaryButton:not(:disabled):hover { background:linear-gradient(115deg,#876199,#896a9c); box-shadow:0 7px 20px #76548f24; }
+.supportColumn { border-left:1px solid #e7e1e8; padding-left:28px; margin-top:18px; gap:0; min-height:478px; background:none; }
+.supportArt { border-radius:0; overflow:visible; background:none; height:292px; }
+.supportArt::before { content:''; position:absolute; left:-12px; top:-6px; width:235px; height:174px; background:url('./assets/wisteria-garden.webp') -1035px -300px / 1536px 1024px no-repeat; pointer-events:none; }
+.supportArt > .wisteria { display:none; }
+.supportArt > div { position:absolute; top:164px; bottom:auto; left:0; right:0; }
+.supportArt .eyebrow { display:none; }
+.supportArt h2 { font-family:'Times New Roman',Times,serif; font-size:38px; line-height:1.105; letter-spacing:-1.8px; margin:0; }
+.supportArt p { color:#74677f; font-size:21px; line-height:30px; margin-top:14px; white-space:nowrap; }
+.privacyCard { display:grid; grid-template-columns:44px minmax(0,1fr); gap:20px; border:0; border-top:1px solid #e3dce5; border-radius:0; background:none; padding:16px 0 0; margin-top:22px; align-items:start; }
+.privacyCard .iconTile { margin:0; width:44px; height:45px; border-radius:13px; background:#e7efe2; color:#53764d; }
+.privacyCard .iconTile svg { width:26px; height:26px; }
+.privacyCard h3 { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+.privacyCard p { font-size:15px; line-height:24px; color:#637560; padding-top:4px; }
+.emergencyNote { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+.demoNotice { margin-top:172px; background:#fcfaf7e8; border:1px solid #e5deeb; font-size:11px; color:#746780; }
+.footer { max-width:1110px; padding:24px 0 30px; font-size:11px; background:#fcfaf7; }
+.tabs { justify-content:center; margin-bottom:25px; }
+.reviewGrid { background:#ffffffed; border-radius:24px; box-shadow:0 15px 40px #5e466608; }
+.reportList { background:#fdfbfeeb; }
+.secondaryButton { border-radius:12px; }
+.landing { background:#fcfaf7dc; border-radius:24px; padding:30px; }
+.success { min-height:460px; padding-top:22px; }
+.success .primaryButton { font-size:16px; min-height:54px; }
+@media (min-width:1700px) {
+  .root { background-size:100% auto; }
+  .main { padding-top:34px; }
+}
+@media (max-width:1250px) {
+  .header { left:0; max-width:calc(100% - 100px); padding-top:36px; }
+  .main { left:0; max-width:calc(100% - 80px); padding-top:20px; }
+  .pageHeading { left:0; }
+  .submitGrid { grid-template-columns:minmax(0,1fr) 300px; }
+  .supportColumn { padding-left:24px; background:#fcfaf7f5; }
+  .supportArt h2 { font-size:34px; }
+  .supportArt p { font-size:18px; }
+  .formCard { padding:28px 28px 24px; }
+  .fieldFooter { font-size:11px; gap:8px; }
+  .cardHeading h2 { font-size:22px; }
+  .cardHeading p { font-size:16px; }
+  .submitRow p { font-size:12px; }
+  .submitRow .primaryButton { font-size:16px; padding:14px 20px; }
+  .footer { padding-left:40px; padding-right:40px; }
+}
+@media (max-width:1000px) {
+  .root { background-size:auto 1050px; }
+  .header { max-width:calc(100% - 64px); }
+  .main { max-width:calc(100% - 48px); }
+  .root h1 { font-size:56px; }
+  .pageHeading p { font-size:18px; }
+  .submitGrid { grid-template-columns:minmax(0,1fr) 245px; gap:18px; }
+  .formCard { padding:24px; }
+  .cardHeading { gap:14px; }
+  .cardHeading .iconTile { width:48px; height:48px; }
+  .cardHeading h2 { font-size:20px; }
+  .cardHeading p { font-size:14px; line-height:22px; }
+  .supportColumn { padding-left:18px; }
+  .supportArt h2 { font-size:29px; letter-spacing:-1px; }
+  .supportArt p { font-size:15px; }
+  .privacyCard { grid-template-columns:34px minmax(0,1fr); gap:12px; }
+  .privacyCard .iconTile { width:34px; height:38px; }
+  .privacyCard p { font-size:12px; line-height:21px; }
+  .submitRow { flex-direction:column; align-items:stretch; }
+  .submitRow .primaryButton { min-height:54px; }
+  .fieldFooter { flex-wrap:wrap; }
+}
+@media (max-width:760px) {
+  .root { background-size:auto 940px; background-position:center top; }
+  .header { max-width:none; left:0; min-height:90px; padding:24px 22px 12px; gap:16px; flex-wrap:wrap; }
+  .brand { font-size:26px; gap:10px; }
+  .brandMark { width:38px; height:40px; }
+  .header > .textButton { margin-left:auto; font-size:13px; }
+  .roleMenu { order:3; width:100%; margin-left:0; }
+  .roleTrigger { width:100%; background:#fcfaf7e6; }
+  .roleDropdown { left:0; right:auto; width:100%; }
+  .main { max-width:none; padding:22px 20px 0; left:0; }
+  .pageHeading { left:0; margin-bottom:28px; }
+  .root h1 { font-size:43px; letter-spacing:-1.7px; line-height:1.15; margin:9px 0; }
+  .eyebrow { font-size:10px; letter-spacing:.18em; }
+  .pageHeading p { font-size:16px; line-height:25px; max-width:340px; margin:auto; }
+  .submitGrid { grid-template-columns:1fr; gap:30px; }
+  .formCard { padding:23px 22px; border-radius:20px; }
+  .cardHeading { padding-bottom:22px; margin-bottom:22px; gap:14px; }
+  .cardHeading h2 { font-size:20px; line-height:27px; letter-spacing:-.6px; }
+  .cardHeading p { font-size:14px; line-height:22px; }
+  .cardHeading .iconTile { width:46px; height:48px; border-radius:14px; }
+  .label { font-size:16px; margin-bottom:12px; }
+  .root textarea { height:210px; min-height:210px; padding:16px; font-size:16px; }
+  .fieldFooter { font-size:10px; margin-top:12px; }
+  .submitRow { margin-top:18px; padding-top:18px; gap:14px; }
+  .submitRow .primaryButton { font-size:17px; min-height:55px; }
+  .supportColumn { display:block; border:0; padding:22px; margin-top:0; min-height:0; border-radius:20px; background:#fcfaf7eb; }
+  .supportArt { height:260px; }
+  .supportArt::before { left:-10px; top:-12px; }
+  .supportArt > div { top:150px; }
+  .supportArt h2 { font-size:34px; line-height:1.05; }
+  .supportArt p { font-size:18px; margin-top:13px; white-space:normal; }
+  .privacyCard { margin-top:12px; padding-top:18px; grid-template-columns:40px minmax(0,1fr); gap:16px; }
+  .privacyCard .iconTile { width:40px; height:43px; }
+  .privacyCard p { font-size:14px; line-height:23px; }
+  .demoNotice { margin-top:60px; }
+  .footer { padding:20px; background:#fcfaf7; }
+  .landing { padding:22px; }
+  .landing h1 { font-size:48px; }
+  .reviewGrid { border-radius:20px; }
+}
+@media (prefers-reduced-motion:reduce) { .root *, .root *::before, .root *::after { animation:none!important; transition:none!important; } }
+
+/* Keep button typography above the scoped native-control reset. */
+.root .primaryButton { font-size:20px; font-weight:400; }
+.root .header > .textButton { font-size:16px; }
+@media (min-width:1251px) { .supportArt::before { display:none; } }
+@media (max-width:1250px) { .root .submitRow .primaryButton { font-size:16px; } }
+@media (max-width:760px) { .root .submitRow .primaryButton { font-size:17px; } .root .header > .textButton { font-size:13px; } }
+@media (min-width:1251px) {
+  .header { max-width:842px; left:75px; }
+  .header > .textButton { margin-left:26px; }
+  .roleTrigger { min-width:174px; }
+  .main { padding-top:22px; }
+}
+
+/* Student submission history uses the same scoped watercolor workspace. */
+.historyNotice { display:flex; align-items:flex-start; gap:10px; padding:14px 18px; margin-bottom:18px!important; border:1px solid #dfd7e8; border-radius:12px; background:#fcfaf7ed; color:#6c6178; font-size:13px; }
+.historyNotice svg { margin-top:2px; color:#76548f; }
+.historyActions { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+.receiptHistoryLink { margin-top:14px; }
+.protectionDetails { margin-top:20px; padding:16px 20px; background:#fcfaf7ed; border:1px solid #e3dce9; border-radius:12px; color:#6c6178; font-size:12px; }
+.protectionDetails summary { cursor:pointer; color:#6e4d85; font-weight:600; }
+.protectionDetails p { margin-top:10px!important; line-height:1.8; }
+.protectionDetails summary:focus-visible { outline:3px solid #76548f; outline-offset:4px; }
+@media (max-width:760px) { .historyNotice { font-size:12px; } .tabs { flex-wrap:wrap; } .historyActions .secondaryButton { min-height:44px; } }
