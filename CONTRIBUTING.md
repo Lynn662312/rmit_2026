@@ -3,7 +3,7 @@
 ## Rules
 
 1. Create a branch for every change: `feature/<task>` or `fix/<task>`.
-2. Put changes in the relevant application area: `frontend/`, `backend/`, or `docs/`.
+2. Change only the paths your role owns (see the ownership table in [README.md](README.md)): A `features/security/`, B `features/ui/`, C `features/api/` + `app/api/`, D `docs/` + `submission/`.
 3. Do not push directly to `main`.
 4. Open a pull request (PR) into `main`; its owner reviews it before merge.
 5. For cross-layer changes or updates to `docs/`, request review from at least one teammate.

@@ -1,31 +1,48 @@
-# RMIT 2026 Hackathon
+# SafeSpeak: RMIT Hackathon 2026 · Challenge 2 (TideCloak / UNLOCKED)
 
-Private team repository for the RMIT 2026 hackathon.
+A confidential campus bullying / harassment reporting website. The browser encrypts the report with TideCloak, and the server stores only ciphertext. Synthetic data only.
 
-## Project structure
+**Team contract and agent prompts:** [docs/SafeSpeak_VSCode_Parallel_Build.md](docs/SafeSpeak_VSCode_Parallel_Build.md). Read sections 0–4 before you start.
 
-| Folder | Purpose |
-| --- | --- |
-| `frontend/` | Client application, UI, and frontend tests |
-| `backend/` | API, services, data access, and backend tests |
-| `docs/` | Planning, design, API agreements, and project documentation |
+## File structure and ownership
 
-Work is organized by application layer, not by contributor. Coordinate through pull requests when a change spans the frontend and backend.
+Every file below is a stub with its contract in a header comment. Each owner implements only their own paths.
 
-## First-time setup
-
-```powershell
-git clone <YOUR-PRIVATE-REPOSITORY-URL>
-cd rmit_2026
-git switch -c feature/<short-task>
+```text
+app/
+├── api/reports/route.js          [C] POST / GET /api/reports
+├── ui-preview/page.jsx           [B] TEMP, remove before submission
+└── security-preview/page.jsx     [A] TEMP, remove before submission
+features/
+├── security/                     [A] useSafeSpeakSecurity.js, serialization.js
+├── ui/                           [B] SafeSpeakApp.jsx, ReportForm.jsx, ReviewPanel.jsx,
+│                                     SafeSpeakApp.module.css, dev/mockAdapters.js (TEMP)
+└── api/                          [C] reportStore.js, reportsClient.js, verifyRequest.js
+docs/                             [D] DEMO_SCRIPT.md, TEST_MATRIX.md, RUN_INSTRUCTIONS.md
+submission/                       [D] summary-draft.md
 ```
 
-Before opening a pull request:
+| Role | Owns | Prompts |
+|---|---|---|
+| A: TideCloak Security | `features/security/`, `app/security-preview/`, all starter-generated files | A1–A3 |
+| B: Frontend | `features/ui/`, `app/ui-preview/` | B1–B2 |
+| C: Backend + Integrator | `features/api/`, `app/api/reports/`, final `app/home/page.jsx` | C1–C3 |
+| D: Delivery | `docs/`, `submission/`, this README at submission | D1–D2 |
+
+### Not created yet: the TideCloak starter (Role A)
+
+`package.json`, `app/layout.jsx`, `app/page.jsx`, `app/auth/redirect/`, `middleware.js` / `proxy.js` and the Tide config JSON come from the official starter:
 
 ```powershell
-git fetch origin
-git rebase origin/main
-git push -u origin HEAD
+npm init @tidecloak/nextjs@latest safespeak-starter
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the collaboration rules and `.github/CODEOWNERS` for ownership configuration.
+A generates the starter outside this repo (or in a scratch folder) and copies its files into the repo root unchanged. If the starter uses `src/`, move `app/` and `features/` under `src/` so there is only one app root. `app/home/page.jsx` is created by C at integration time, on whatever post-login route the starter uses.
+
+## Rules
+
+- Edit only the paths you own. Do not touch `package.json`, `app/layout.jsx` or auth redirects unless you are A.
+- Never commit `.env`, credentials, `node_modules/` or `.next/`.
+- Never fake auth, encryption or decryption. Mock adapters are for the UI preview only.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the branch and PR workflow.
