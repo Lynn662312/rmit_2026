@@ -27,3 +27,6 @@ pnpm-debug.log*
 # Next.js
 .next/
 out/
+
+# TideCloak dev database (created when the project folder is mounted into Docker)
+keycloakdb.*
