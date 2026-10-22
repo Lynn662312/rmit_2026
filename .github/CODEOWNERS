@@ -2,6 +2,11 @@
 # applies these rules only when the placeholder is replaced and branch
 # protection requires Code Owner review.
 
-/frontend/ @REPLACE_WITH_TEAM_OR_GITHUB_USERNAMES
-/backend/  @REPLACE_WITH_TEAM_OR_GITHUB_USERNAMES
-/docs/     @REPLACE_WITH_TEAM_OR_GITHUB_USERNAMES
+/features/security/       @REPLACE_WITH_ROLE_A
+/app/security-preview/    @REPLACE_WITH_ROLE_A
+/features/ui/             @REPLACE_WITH_ROLE_B
+/app/ui-preview/          @REPLACE_WITH_ROLE_B
+/features/api/            @REPLACE_WITH_ROLE_C
+/app/api/                 @REPLACE_WITH_ROLE_C
+/docs/                    @REPLACE_WITH_ROLE_D
+/submission/              @REPLACE_WITH_ROLE_D
