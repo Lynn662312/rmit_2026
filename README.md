@@ -1,73 +1,54 @@
+[![Built with TideCloak](https://tide.org/badges/built-with-tidecloak.svg)](https://tide.org/tidecloak?utm_source=github&utm_medium=readme&utm_campaign=unlocked)
+
 # SafeSpeak
 
-SafeSpeak is a campus reporting prototype for students facing bullying or harassment. Its calm, focused interface gives students space to speak up and share only what they feel ready to share.
-
-## Project overview
-
-### 1. Vision & originality
-
-SafeSpeak explores a supportive reporting experience that avoids overwhelming students at a difficult moment. A student begins with one simple form, receives a clear submission reference, and can return to previous reports without repeatedly entering the same information.
-
-### 2. Trust constraint insight
-
-Reporting sensitive incidents normally requires students to trust the organisation operating the portal and everyone capable of accessing its systems. Fear of inappropriate access, exposure, or retaliation can prevent a report from being submitted. SafeSpeak separates report metadata from the protected-content experience and makes revealing content an explicit action.
-
-### 3. Value & impact
-
-Students receive a clearer and less intimidating way to document an incident. Investigators receive a focused review workflow, while administrator screens do not automatically present readable report content. This could help institutions hear about incidents that would otherwise remain unreported.
-
-### 4. Why TideCloak matters
-
-The intended TideCloak integration would provide real authentication, permission-aware encryption, and controlled decryption instead of relying only on interface states or ordinary backend access rules. This is important because privacy should be enforced technically, not merely promised. In the current recorded prototype, these security operations are simulated and still require integration and verification.
-
-### 5. Prototype & storytelling
-
-The prototype demonstrates a student submitting synthetic content, viewing submission history, an investigator explicitly revealing and hiding a simulated report, and an administrator-facing state where decryption is unavailable. The role selector demonstrates the intended experience; it does not enforce real security.
+**Team:** `Taylor_MYS_Onzz_C2`
+**Challenge:** RMIT Hackathon 2026 Challenge 2 Tide UNLOCKED
 
 ## Demo video
 
-[Watch the SafeSpeak demo on YouTube](https://youtu.be/ZXnvC7sGWug)
+[Watch the two-minute SafeSpeak demo on YouTube](https://youtu.be/ZXnvC7sGWug)
 
-The two-minute demonstration uses synthetic data and clearly labelled simulated roles and decryption results.
+**Live UI prototype:** [Open SafeSpeak](https://challenge-2-demo.netlify.app/)
 
-| Time | Website action | What the demo communicates |
-|---|---|---|
-| 0:00–0:20 | Show the SafeSpeak page and wisteria design | A calm, focused place for students to speak up. |
-| 0:20–0:45 | Enter a synthetic report and select **Encrypt & submit** | A simple submission flow without unnecessary identity fields or attachments. |
-| 0:45–1:05 | Select **View my reports** and open the new record | Students can retrieve the report reference, date, and encrypted-content view. |
-| 1:05–1:30 | Switch to Investigator, select the report, reveal it, then hide it | Report content is revealed through an explicit simulated action and can be hidden again. |
-| 1:30–1:45 | Switch to School Admin and show unavailable decryption | The administrator preview illustrates a restricted intended experience. |
-| 1:45–2:00 | Return to the student page | The demonstration closes with the product value and its current security limitation. |
+The video and deployed UI use synthetic data and identify the simulated records, roles, encryption, and decryption results. The complete narration is available in [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md).
 
-The complete narration is in [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md).
+## Project overview
 
-## Current prototype status
+_SafeSpeak is a calm campus reporting prototype for documenting bullying or harassment through a permission-aware review process._
 
-- The frontend workflow and role workspaces use synthetic records and preview adapters.
-- The backend implements an in-memory report store, API client, request validation, and route tests.
-- Reports are lost whenever the server restarts.
-- Real TideCloak authentication, permissions, encryption, decryption, and end-to-end verification remain pending.
-- Do not enter real incidents or personal information into this prototype.
+Built with [TideCloak](https://tide.org/tidecloak?utm_source=github&utm_medium=readme&utm_campaign=unlocked).
 
-## Backend tests
+### 1. Vision & originality
 
-The isolated backend tests do not require TideCloak:
+SafeSpeak proposes a supportive reporting experience that avoids overwhelming students. A student begins with one focused form, receives a submission reference, and can return to previous reports without re-entering information.
+
+### 2. Trust constraint insight
+
+Sensitive reporting requires students to trust the organisation operating the portal and those with system access. Fear of exposure or retaliation can prevent a report from being submitted. Removing this bottleneck could let students seek help without giving every operator automatic access to readable disclosures.
+
+### 3. Value & impact
+
+Students receive a less intimidating way to document an incident. Investigators receive a focused review workflow, while administrator screens do not automatically display readable content. A student can submit a synthetic report, revisit its reference and date, and see that reading it is a separate review step.
+
+### 4. Why TideCloak matters
+
+TideCloak is intended to replace simulated interface restrictions with real authentication, permission-aware encryption, and controlled decryption. This matters because confidentiality should be technically enforced rather than relying only on application UI or organisational promises. In the recorded prototype, these security operations remain simulated and require integration and verification.
+
+### 5. Prototype & storytelling
+
+The prototype demonstrates student submission history, an investigator explicitly revealing and hiding a simulated report, and a School Admin state where decryption is unavailable. Judges should watch the transition between these workspaces. The role selector demonstrates the intended experience; it does not enforce real security.
+
+## Setup
+
+The current repository contains the SafeSpeak frontend, backend feature modules, and documentation, but not a complete root-level Next.js starter or `package.json`. The recorded browser experience uses the clearly labelled UI preview. Full application startup remains pending TideCloak starter integration.
+
+The isolated backend tests require Node.js and can be run from the repository root:
 
 ```bash
+git clone https://github.com/Lynn662312/rmit_2026.git
+cd rmit_2026
 node --test "features/api/__tests__/*.test.js"
 ```
 
-## Repository layout
-
-```text
-app/api/reports/        Report API routes
-app/ui-preview/         Simulated frontend demonstration
-features/api/           Store, validation, API client, and tests
-features/security/      TideCloak integration boundary; real implementation pending
-features/ui/            SafeSpeak student, investigator, and administrator UI
-docs/                   Demo script, API contract, and test documentation
-```
-
-## Team
-
-Built for RMIT Hackathon 2026, Challenge 2: Tide UNLOCKED.
+Detailed run notes, preview limitations, and remaining integration work are documented in [docs/RUN_INSTRUCTIONS.md](docs/RUN_INSTRUCTIONS.md).
