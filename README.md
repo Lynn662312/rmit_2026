@@ -9,7 +9,9 @@
 
 [Watch the two-minute SafeSpeak demo on YouTube](https://youtu.be/ZXnvC7sGWug)
 
-The video uses synthetic data and identifies the simulated records, roles, encryption, and decryption results. The complete narration is available in [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md).
+**Live UI prototype:** [Open SafeSpeak](https://challenge-2-demo.netlify.app/)
+
+The video and deployed UI use synthetic data and identify the simulated records, roles, encryption, and decryption results. The complete narration is available in [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md).
 
 ## Project overview
 
