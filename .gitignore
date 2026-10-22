@@ -30,3 +30,6 @@ out/
 
 # TideCloak dev database (created when the project folder is mounted into Docker)
 keycloakdb.*
+
+# Microsoft Word temporary owner files
+~$*.docx

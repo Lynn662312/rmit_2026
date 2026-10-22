@@ -6,15 +6,15 @@
 
 | Status | Requirement | Evidence or next action |
 |---|---|---|
-| [ ] | Correct Challenge 2 team name | Confirm the submitted team name follows `<university>_<campus>_<team>_C2`. The final team name is not recorded in this repository. |
+| [x] | Correct Challenge 2 team name | `Taylor_MYS_Onzz_C2` follows the required `<university>_<campus>_<team>_C2` format. |
 | [x] | Public GitHub repository accessible | [Lynn662312/rmit_2026](https://github.com/Lynn662312/rmit_2026) is publicly accessible. |
-| [ ] | `sourcecodes.zip` and `summary.doc` uploaded | Neither required file is currently present. Create both, scan the archive for secrets, then commit or upload them as instructed. |
+| [ ] | `sourcecodes.zip` and `summary.doc` uploaded | `submission/summary.docx` is present. `sourcecodes.zip` still needs to be created and scanned for secrets. Confirm whether the organiser accepts modern `.docx` or requires legacy `.doc`. |
 | [ ] | Two-minute `video.mp4` uploaded | The [YouTube demo](https://youtu.be/ZXnvC7sGWug) is accessible, but the required `video.mp4` file is not currently present. Export it below 100 MB. |
 | [x] | Run instructions included | [docs/RUN_INSTRUCTIONS.md](../docs/RUN_INSTRUCTIONS.md) records the commands that currently work and the integration limitations. |
 | [x] | Simulated components identified | The [README](../README.md), [demo script](../docs/DEMO_SCRIPT.md), and run notes identify simulated roles, records, encryption, and decryption. |
 | [ ] | Google Form submitted before 6:00 PM MYT | Submit the public repository link and retain the confirmation screen or email. |
 
-**Verified readiness: 3 / 7 official Challenge 2 items.**
+**Verified readiness: 4 / 7 official Challenge 2 items.**
 
 ## Tide UNLOCKED repository checks
 
