@@ -12,7 +12,8 @@ coverage/
 *.key
 
 # Editor and operating-system files
-.vscode/
+.vscode/*
+!.vscode/mcp.json
 .idea/
 *.swp
 .DS_Store

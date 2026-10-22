@@ -4,6 +4,28 @@ A confidential campus bullying / harassment reporting website. The browser encry
 
 **Team contract and agent prompts:** [docs/SafeSpeak_VSCode_Parallel_Build.md](docs/SafeSpeak_VSCode_Parallel_Build.md). Read sections 0–4 before you start.
 
+## Connect the Tide agent pack in VS Code
+
+This repository includes a workspace-scoped MCP configuration for Raziel, Tide's
+read-only agent pack. It gives GitHub Copilot Chat verified TideCloak guidance,
+playbooks, and security review tools; it does not connect to the local
+TideCloak instance or access application credentials.
+
+1. Open this repository folder in VS Code with GitHub Copilot enabled.
+2. When VS Code asks whether to start the `tide-raziel` MCP server, review the
+   endpoint and approve it.
+3. If it does not start automatically, open the Command Palette
+   (`Ctrl+Shift+P`), run **MCP: List Servers**, select `tide-raziel`, and choose
+   **Start**.
+4. In Copilot Chat, use agent mode and ask:
+   `Use Tide's guidance to review this app's TideCloak integration. Map my blast radius and list concrete fixes.`
+
+The configuration is in [.vscode/mcp.json](.vscode/mcp.json) and uses Tide's
+documented hosted endpoint, `https://mcp.tide.org/mcp`. It is read-only and
+requires no TideCloak instance, API token, or Node.js installation. For a
+local stdio alternative, use `npx -y @tideorg/mcp` in a user-level MCP
+configuration instead of committing credentials to this repository.
+
 ## File structure and ownership
 
 Every file below is a stub with its contract in a header comment. Each owner implements only their own paths.
