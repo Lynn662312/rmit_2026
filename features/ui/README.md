@@ -39,7 +39,7 @@ Keep the actual starter's provider, redirect, and path convention. If it uses `s
 
 ## Temporary preview
 
-`app/ui-preview/page.jsx` is a development-only route with a prominent simulation banner. It imports `features/ui/dev/mockAdapters.js` and supports role, empty inbox, API failure, crypto failure and invalid encryption output previews. Fixtures are not Tide encryption, authorization, or evidence of successful backend integration. No mock adapter is imported by `SafeSpeakApp` or its production children.
+`app/ui-preview/page.jsx` is a development-only route, defaulting to the normal reporter view. The top development toolbar and role/state selectors have been removed. A footer explicitly identifies simulated data, sign-in and encryption. It imports `features/ui/dev/mockAdapters.js`. Fixtures are not Tide encryption, authorization, or evidence of successful backend integration. No mock adapter is imported by `SafeSpeakApp` or its production children.
 
 Remove the preview route and `features/ui/dev/` during final integration, as required by the team guide. Real login, bearer token verification, role provisioning and cross-account decryption must be tested with A/C's implementations; UI preview results cannot establish those capabilities.
 
