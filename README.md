@@ -26,8 +26,7 @@ The prototype demonstrates a student submitting synthetic content, viewing submi
 
 ## Demo video
 
-<!-- Replace VIDEO_ID_HERE after uploading the final recording. -->
-[Watch the SafeSpeak demo on YouTube](https://youtu.be/VIDEO_ID_HERE)
+[Watch the SafeSpeak demo on YouTube](https://youtu.be/ZXnvC7sGWug)
 
 The two-minute demonstration uses synthetic data and clearly labelled simulated roles and decryption results.
 

@@ -20,4 +20,4 @@
 - Record the screen first and add narration afterward if that is faster.
 - Add automatic subtitles and trim loading or navigation delays.
 - Keep the final video under two minutes and under 100 MB.
-- Replace `VIDEO_ID_HERE` in the repository README after uploading the video to YouTube.
+- Confirm the [uploaded YouTube video](https://youtu.be/ZXnvC7sGWug) plays correctly before submission.
