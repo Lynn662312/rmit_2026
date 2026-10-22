@@ -1,110 +1,74 @@
-[![Built with TideCloak](https://tide.org/badges/built-with-tidecloak.svg)](https://tide.org/tidecloak?utm_source=github&utm_medium=readme&utm_campaign=unlocked)
-
 # SafeSpeak
+
+SafeSpeak is a campus reporting prototype for students facing bullying or harassment. Its calm, focused interface gives students space to speak up and share only what they feel ready to share.
 
 ## Project overview
 
-_SafeSpeak is a campus harassment-reporting website where reports are encrypted in the student's browser, so only the designated investigator can read them, not the university's servers or administrators._
-
-Built with [TideCloak](https://tide.org/tidecloak?utm_source=github&utm_medium=readme&utm_campaign=unlocked).
-
 ### 1. Vision & originality
 
-A reporting channel students can use without trusting the institution that runs it. The report stays confidential because of how it is encrypted, not because of a privacy policy.
+SafeSpeak explores a supportive reporting experience that avoids overwhelming students at a difficult moment. A student begins with one simple form, receives a clear submission reference, and can return to previous reports without repeatedly entering the same information.
 
 ### 2. Trust constraint insight
 
-Students under-report because whoever runs the system can read it: IT staff, database admins, attackers, or the accused's colleagues. Server-side encryption doesn't help, because the server holds the key. If no single party ever holds the key, a reporting channel stays confidential even from its operator.
+Reporting sensitive incidents normally requires students to trust the organisation operating the portal and everyone capable of accessing its systems. Fear of inappropriate access, exposure, or retaliation can prevent a report from being submitted. SafeSpeak separates report metadata from the protected-content experience and makes revealing content an explicit action.
 
 ### 3. Value & impact
 
-- **Students** report without fearing leaks or retaliation.
-- **Universities** hear about incidents that now go unreported, and stop holding readable sensitive records.
-- **Example:** a student reports a tutor. A school administrator with full server access sees only ciphertext. Only the investigator can decrypt it.
+Students receive a clearer and less intimidating way to document an incident. Investigators receive a focused review workflow, while administrator screens do not automatically present readable report content. This could help institutions hear about incidents that would otherwise remain unreported.
 
 ### 4. Why TideCloak matters
 
-- **Identity:** TideCloak sign-in. The server verifies every token and takes ownership from verified claims.
-- **Browser-side encryption:** reports are encrypted under Tide's `report` tag before leaving the browser. Tide splits the key across its decentralised network, so our server never holds it.
-- **Policy-gated decryption:** only accounts with `_tide_report.selfdecrypt` can decrypt, granted through TideCloak's governed change requests, not the app's database.
-
-With ordinary login, the operator could read every report. With TideCloak, it can't.
+The intended TideCloak integration would provide real authentication, permission-aware encryption, and controlled decryption instead of relying only on interface states or ordinary backend access rules. This is important because privacy should be enforced technically, not merely promised. In the current recorded prototype, these security operations are simulated and still require integration and verification.
 
 ### 5. Prototype & storytelling
 
-[Demo video](video.mp4) highlights:
+The prototype demonstrates a student submitting synthetic content, viewing submission history, an investigator explicitly revealing and hiding a simulated report, and an administrator-facing state where decryption is unavailable. The role selector demonstrates the intended experience; it does not enforce real security.
 
-1. A student signs in with Tide and submits a synthetic report.
-2. The Network panel shows the POST body is only `{ "ciphertext": … }`.
-3. A School Admin sees only ciphertext, and Tide refuses to decrypt it.
-4. The Investigator decrypts the report on demand.
+## Demo video
 
----
+<!-- Replace VIDEO_ID_HERE after uploading the final recording. -->
+[Watch the SafeSpeak demo on YouTube](https://youtu.be/VIDEO_ID_HERE)
 
-## Setup
+The two-minute demonstration uses synthetic data and clearly labelled simulated roles and decryption results.
 
-Full instructions, including role provisioning and troubleshooting, are in [docs/RUN_INSTRUCTIONS.md](docs/RUN_INSTRUCTIONS.md).
+| Time | Website action | What the demo communicates |
+|---|---|---|
+| 0:00–0:20 | Show the SafeSpeak page and wisteria design | A calm, focused place for students to speak up. |
+| 0:20–0:45 | Enter a synthetic report and select **Encrypt & submit** | A simple submission flow without unnecessary identity fields or attachments. |
+| 0:45–1:05 | Select **View my reports** and open the new record | Students can retrieve the report reference, date, and encrypted-content view. |
+| 1:05–1:30 | Switch to Investigator, select the report, reveal it, then hide it | Report content is revealed through an explicit simulated action and can be hidden again. |
+| 1:30–1:45 | Switch to School Admin and show unavailable decryption | The administrator preview illustrates a restricted intended experience. |
+| 1:45–2:00 | Return to the student page | The demonstration closes with the product value and its current security limitation. |
 
-**Prerequisites:** Node.js 20.9+, Docker, and a bash shell with `curl` and `jq`. On Windows, use Git Bash or WSL.
+The complete narration is in [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md).
 
-```bash
-# 1. Start a local TideCloak dev server (pick your own admin password)
-export KC_PASSWORD='<choose-an-admin-password>'
-docker run --name safespeak-tidecloak -d -p 8080:8080 \
-  -v safespeak-tidecloak-data:/opt/keycloak/data/h2 \
-  -e KC_BOOTSTRAP_ADMIN_USERNAME=admin \
-  -e KC_BOOTSTRAP_ADMIN_PASSWORD="$KC_PASSWORD" \
-  tideorg/tidecloak-dev:latest
+## Current prototype status
 
-# 2. Install dependencies and provision the Tide realm (writes tidecloak.json)
-npm install
-SUBSCRIPTION_EMAIL='<your-licence-email>' npm run init
+- The frontend workflow and role workspaces use synthetic records and preview adapters.
+- The backend implements an in-memory report store, API client, request validation, and route tests.
+- Reports are lost whenever the server restarts.
+- Real TideCloak authentication, permissions, encryption, decryption, and end-to-end verification remain pending.
+- Do not enter real incidents or personal information into this prototype.
 
-# 3. Run the website at http://localhost:3000
-npm run dev
-```
+## Backend tests
 
-Running `npm run init` licenses the realm to your email under [Tide's Terms & Conditions](https://tide.org/legal). After provisioning, create the `_tide_report.selfencrypt` role (for reporters) and the `_tide_report.selfdecrypt` role (for investigators), then approve the change requests in the TideCloak admin console. The School Admin account receives neither role.
-
-To run the backend tests (no TideCloak needed):
+The isolated backend tests do not require TideCloak:
 
 ```bash
 node --test "features/api/__tests__/*.test.js"
 ```
 
-## How it works
-
-```text
-Browser (Tide SDK)                    Next.js API                    In-memory store
-───────────────────                   ───────────                    ───────────────
-login via TideCloak  ──token──▶  verifyTideCloakToken()
-encrypt(report, tag) ──ciphertext──▶  POST /api/reports  ──────────▶  { id, createdAt, ciphertext, ownerSub }
-decrypt(ciphertext)  ◀──ciphertext──  GET  /api/reports  ◀──────────  owner, or verified investigator role
-```
-
-- The API has no encrypt or decrypt endpoints. All cryptography runs in the browser through the Tide SDK.
-- The API accepts only `{ "ciphertext" }`. It rejects plaintext fields, bodies over 64 KiB and unverified tokens, and it fails closed if the verifier is unavailable.
-- The full contract is in [docs/API_CONTRACT.md](docs/API_CONTRACT.md).
-
 ## Repository layout
 
 ```text
-app/api/reports/        REST routes: POST/GET list, GET/PATCH/DELETE by id
-app/home/               Post-login page that composes security + API + UI
-features/security/      TideCloak facade: login, token, encryptReport, decryptReport
-features/api/           Report store, token verification, browser API client, tests
-features/ui/            SafeSpeak React UI (reporter and investigator views)
-docs/                   Run instructions, API contract, demo script, test matrix
+app/api/reports/        Report API routes
+app/ui-preview/         Simulated frontend demonstration
+features/api/           Store, validation, API client, and tests
+features/security/      TideCloak integration boundary; real implementation pending
+features/ui/            SafeSpeak student, investigator, and administrator UI
+docs/                   Demo script, API contract, and test documentation
 ```
-
-## Limitations
-
-- This is a hackathon prototype that uses synthetic data only. Do not enter real incidents.
-- Reports are held in server memory and are lost on restart.
-- Reporting is confidential, not anonymous. The server stores the reporter's verified account ID so that it can check ownership.
-- The local dev realm has a single admin, so the approval threshold is one. A real deployment would need a multi-admin quorum.
-- Verified test results are recorded in [docs/TEST_MATRIX.md](docs/TEST_MATRIX.md).
 
 ## Team
 
-Built for RMIT Hackathon 2026, Challenge 2 (Tide UNLOCKED). Team workflow: [CONTRIBUTING.md](CONTRIBUTING.md) · [Build plan](docs/SafeSpeak_VSCode_Parallel_Build.md).
+Built for RMIT Hackathon 2026, Challenge 2: Tide UNLOCKED.
