@@ -1,6 +1,6 @@
 // OWNER: Role B · UI PREVIEW ONLY: NOT real crypto or access control.
 // Used solely by app/ui-preview/page.jsx. Remove before final submission.
-// Must match the shapes in §3.3 (security) and §3.4 (api).
+// Matches the security facade and docs/API_CONTRACT.md §4 client shapes.
 
 export function makeMockSecurity() {
   return {
@@ -28,6 +28,16 @@ export function makeMockApi() {
       return { id:record.id, createdAt:record.createdAt };
     },
     listReports: async () => { await delay(); return [...reports]; },
+    getReport: async (id) => {
+      await delay();
+      const report = reports.find((record) => record.id === id);
+      if (!report) {
+        const error = new Error('Report not found.');
+        error.status = 404;
+        throw error;
+      }
+      return { ...report };
+    },
   };
 }
 

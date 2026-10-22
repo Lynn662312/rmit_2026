@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import styles from './SafeSpeakApp.module.css';
 import { Icon, Wisteria } from './Visuals';
 
-export default function ReportForm({ security, api }) {
+export default function ReportForm({ security, api, onViewReports, viewReportsLabel = 'My reports' }) {
   const [text, setText] = useState('');
   const [stage, setStage] = useState('idle');
   const [error, setError] = useState('');
@@ -34,6 +34,7 @@ export default function ReportForm({ security, api }) {
         <dl className={styles.receipt}><div><dt>Reference</dt><dd>{receipt?.id}</dd></div><div><dt>Submitted</dt><dd>{receipt?.createdAt ? new Date(receipt.createdAt).toLocaleString() : 'Just now'}</dd></div></dl>
         <p className={styles.helper}>This is a submission receipt, not a case tracking number.</p>
         <button className={styles.primaryButton} onClick={() => { setReceipt(null); setStage('idle'); }}>Write another report<Icon name="arrow" /></button>
+        {onViewReports && <div className={styles.receiptHistoryLink}><button className={styles.secondaryButton} onClick={onViewReports}><Icon name="folder" />View {viewReportsLabel.toLowerCase()}</button></div>}
       </div> : <form onSubmit={submit} aria-busy={busy}>
         <div className={styles.cardHeading}><span className={styles.iconTile}><Icon name="write" /></span><div><h2 id="report-heading">Share what happened</h2><p>Start wherever feels comfortable.</p></div><span className={styles.smallBadge}><Icon name="lock" />Encrypted submission</span></div>
         <label className={styles.label} htmlFor="report-text">Your report</label>
