@@ -33,7 +33,7 @@ Keep the actual starter's provider, redirect, and path convention. If it uses `s
 - Decrypt permission only: review workspace.
 - Both: submit/review navigation.
 - Neither: server-filtered ciphertext list with disabled decrypt action.
-- Token changes, logout, report changes, hiding content and leaving review clear decrypted text. Late decrypt results are ignored after a view/session change.
+- Token changes, logout, report changes, hiding content and leaving review clear decrypted text. Late decrypt results are ignored after a view/session change. Routine token refreshes preserve a report draft; logout or an unauthenticated transition clears it. An account switch must pass through the security adapter's signed-out state (or the integration must remount the app for the new identity).
 - No plaintext is stored in local/session storage or written to logs by this UI.
 - Responsive list-to-detail navigation, keyboard focus indicators and reduced-motion support.
 
@@ -50,3 +50,5 @@ Remove the preview route and `features/ui/dev/` during final integration, as req
 The repository has no generated starter/package manifest yet. A temporary React/Vite harness outside the repository compiled this UI successfully; no harness dependencies were added to the project. The Next.js-specific `use client` directives remain in the source for the final starter.
 
 Browser preview checks passed for submission receipt, draft retention on API failure, invalid encryption output, explicit decrypt/hide, report/view changes clearing plaintext, disabled decrypt without permission, crypto errors, list errors/retry controls, empty inbox, dual-permission navigation and logout. Desktop layout and 390px mobile submission were checked; the mobile page had no horizontal overflow. These checks use simulated adapters only. Real Tide/REST integration and the final Next.js build remain unverified until the team's starter and adapters are available.
+
+Final handoff checks also verified that a simulated access-token refresh preserves the typed report, while logout followed by login clears the draft. The header Role menu was checked for role-specific navigation, permission states, keyboard dismissal and 390px layout.

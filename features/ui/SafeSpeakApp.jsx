@@ -20,7 +20,8 @@ export default function SafeSpeakApp({ security, api, headerNavigation = null })
     finally { setPending(false); }
   }
   const active = !security.canEncrypt ? 'review' : !security.canDecrypt ? 'submit' : view;
-  // Session changes unmount the sensitive views and clear drafts/decrypted text.
+  // Token changes clear decrypted review content. Preserve the writing form across
+  // routine token refreshes; logout and unauthenticated transitions clear it.
   const sessionKey = `${security.token || 'session'}:${sessionVersion}`;
   return <div className={styles.root}>
     <header className={styles.header}>
@@ -37,7 +38,7 @@ export default function SafeSpeakApp({ security, api, headerNavigation = null })
       </section> : <>
         <section className={styles.pageHeading}><div><span className={styles.eyebrow}>{active === 'submit' ? 'A SPACE TO BE HEARD' : 'HANDLE WITH CARE'}</span><h1>{active === 'submit' ? 'Your voice matters.' : 'A thoughtful review.'}</h1><p>{active === 'submit' ? 'Take a breath. Share what you feel ready to share.' : 'Read carefully. Access report content only when permitted.'}</p></div><span className={styles.sessionBadge}><span />Signed in</span></section>
         {security.canEncrypt && security.canDecrypt && <nav className={styles.tabs} aria-label="Workspace"><button aria-current={active === 'submit' ? 'page' : undefined} className={active === 'submit' ? styles.activeTab : ''} onClick={() => setView('submit')}><Icon name="write" />Submit a report</button><button aria-current={active === 'review' ? 'page' : undefined} className={active === 'review' ? styles.activeTab : ''} onClick={() => setView('review')}><Icon name="folder" />Review reports</button></nav>}
-        {!pending && (active === 'submit' ? <ReportForm key={sessionKey} security={security} api={api} /> : <ReviewPanel key={sessionKey} security={security} api={api} />)}
+        {!pending && (active === 'submit' ? <ReportForm key={sessionVersion} security={security} api={api} /> : <ReviewPanel key={sessionKey} security={security} api={api} />)}
       </>}
       <div className={styles.demoNotice}><Icon name="info" /><span><strong>Demonstration only.</strong> Please use synthetic reports. Do not enter names, contact details, or real incidents. Reports are stored temporarily and may be cleared when the server restarts.</span></div>
     </main>
