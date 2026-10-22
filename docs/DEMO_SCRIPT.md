@@ -1,45 +1,42 @@
-# SafeSpeak: 2-Minute UNLOCKED Demo
+# SafeSpeak: 2-Minute UI-First Demo
 
-> Source: the [UNLOCKED challenge brief](https://tide.org/unlocked/). Use synthetic data only. Record the real TideCloak application, not `/ui-preview` or mock adapters. Narrate only behaviour verified before recording.
+> Time-critical fallback. This version records the current SafeSpeak workflow without claiming that TideCloak authentication, permissions, encryption, or decryption are integrated. Use synthetic data only. The `/ui-preview` route is a simulation, not security evidence.
 
-## Judging alignment
+## Honest judging position
 
-| Criterion | Weight | What the demo proves |
-|---|---:|---|
-| Vision & originality | 25% | Campus reporting without making the university, application operator, or one administrator a universal reader of disclosures. |
-| Trust constraint insight | 20% | Conventional reporting asks students to trust a central service with plaintext and access control. |
-| Value & impact | 20% | Students can speak up with stronger, technically enforced confidentiality while authorised investigators can still respond. |
-| Why TideCloak matters | 20% | TideCloak supplies real identity, permissions, and browser-side encryption/decryption; the API receives and stores ciphertext only. |
-| Prototype & storytelling | 15% | A student submits a synthetic report, the protected payload is shown, and an authorised investigator decrypts it. |
+This recording can demonstrate vision, the trust constraint, potential impact, interface quality, and the intended user journey. It does **not** satisfy the competition requirement to demonstrate a working TideCloak integration. If real integration becomes available, replace the final 30–40 seconds with genuine TideCloak evidence before submission.
 
 ## Recording script
 
 | Time | Judging focus | Narration | On screen |
 |---|---|---|---|
-| 0:00–0:18 | Vision & originality | “SafeSpeak is a confidential campus reporting service built around a different promise: students should not have to make the platform operator a universal reader of their disclosures.” | Title card, then SafeSpeak landing page. |
-| 0:18–0:38 | Trust constraint | “With a conventional reporting form, a student must trust the institution, its server administrators, and its access settings with the original message. That trust can stop someone from speaking up at all.” | Simple overlay: **Student → central server → administrators**, then return to the app. |
-| 0:38–1:02 | Working prototype | “Here, a student signs in through TideCloak and submits a synthetic report. SafeSpeak encrypts it in the browser before sending it.” | Sign in as the student, enter the prepared synthetic report, and select **Encrypt & submit**. |
-| 1:02–1:22 | Why TideCloak matters | “The network request contains ciphertext, not the student’s words. The SafeSpeak backend coordinates the report, but it never receives plaintext or holds a master decryption key.” | Open the prepared Network request and highlight only the `ciphertext` field. Briefly show the ciphertext in the application. |
-| 1:22–1:45 | TideCloak + trust proof | “A reporter cannot decrypt the report. When an authorised investigator signs in, TideCloak combines the correct identity and permission to allow decryption. Access is enforced by the protected operation, not just by hiding a button.” | Show the reporter’s lack of decrypt access. Switch to the real investigator account, open the report, and select **Decrypt report**. |
-| 1:45–2:00 | Value & impact | “This gives students a more credible reason to trust the reporting process while investigators can still act on authorised disclosures. Our prototype uses synthetic data and in-memory storage, but demonstrates the core possibility: confidentiality enforced by cryptography, not only by an organisational promise.” | Show the decrypted synthetic report, then finish on a SafeSpeak/TideCloak end card. |
+| 0:00–0:20 | Vision & originality | “SafeSpeak is a confidential reporting experience for students facing bullying or harassment. It is designed around a simple idea: someone should not have to surrender control of a sensitive disclosure just to ask for help.” | SafeSpeak title card, then the landing page. Keep the preview disclaimer visible. |
+| 0:20–0:40 | Trust constraint | “Traditional reporting portals ask students to trust the organisation and its systems with highly personal information. Fear of exposure, misuse, or inappropriate access can stop a report before it is ever submitted.” | Landing page followed by a short caption: **Sensitive report → central service → trust bottleneck**. |
+| 0:40–1:05 | Student experience | “SafeSpeak gives the student one focused task. They write a report without unnecessary identity fields, categories, or attachments, and receive a clear confirmation when it is submitted.” | Continue into the simulated student workspace, enter a short synthetic report, and submit it. |
+| 1:05–1:28 | Privacy-first design | “The interface is designed around encrypted content rather than exposing the original message throughout the system. Review screens separate report metadata from protected content and reveal content only through an explicit action.” | Switch to the simulated investigator workspace. Show the report list, timestamp, ciphertext preview, and explicit **Decrypt report** action. Do not describe the simulated result as real encryption. |
+| 1:28–1:45 | Roles and workflow | “Different workspaces communicate what each participant should be able to do: students report, investigators review, and administrators do not automatically receive a universal reading experience.” | Briefly show the Student, Investigator, and School Admin UI states using the preview role menu. Keep the simulated-preview label visible. |
+| 1:45–2:00 | Value, status, and next step | “SafeSpeak shows how a more trustworthy reporting journey could help students speak up while giving investigators a focused response workflow. This recording demonstrates the product experience with synthetic data; TideCloak security integration remains the next implementation step.” | End on the SafeSpeak screen with a caption: **UI prototype · synthetic data · security integration pending**. |
 
-## Proof gates before recording
+## Fast capture plan
 
-- Use two real accounts if possible: one reporter and one investigator.
-- Confirm the reporter can encrypt and submit but cannot decrypt.
-- Confirm the investigator can list and decrypt the reporter’s ciphertext.
-- Confirm the POST request body contains exactly `ciphertext`, never plaintext.
-- Do not use the preview role dropdown as evidence of access control.
-- Do not claim that an administrator cannot override permissions unless that behaviour was actually tested.
-- Keep the video under two minutes and the `.mp4` under 100 MB.
+1. Record this as reusable product footage, not as proof of TideCloak security.
+2. Keep the preview disclaimer visible whenever simulated roles or data appear.
+3. Use one prepared synthetic sentence so typing takes less than five seconds.
+4. Record the screen first; add narration afterward to avoid repeating the UI take.
+5. Trim loading and navigation delays, add automatic captions, and use simple title/end cards.
+6. Export as 1080p MP4, keep it under 100 MB, and watch the exported file once.
 
-## Fast production plan
+## If TideCloak becomes available before submission
 
-1. Prepare both browser sessions and the Network panel before recording.
-2. Paste a short synthetic report; never type real names or incidents.
-3. Record the real workflow in one continuous take.
-4. Trim waiting/loading time and account-switching delays.
-5. Add a title, five short criterion captions, and automatic subtitles.
-6. Export as 1080p MP4, verify it is under 100 MB, watch it once, and commit it as `video.mp4` in the public repository.
+Replace 1:20–2:00 with real evidence:
 
-AI may assist with the script, captions, noise cleanup, title card, and trimming. The application interaction itself must be a genuine screen recording; do not generate or simulate security behaviour that the prototype did not demonstrate.
+- Real TideCloak sign-in.
+- A real browser-side encryption operation.
+- A network request containing ciphertext only.
+- A genuinely authorised decryption or a real access denial.
+
+Never present the role dropdown, mock ciphertext, or preview decryption as TideCloak behaviour.
+
+## Fastest production choice
+
+Record the real UI yourselves and use AI only for narration, subtitles, noise cleanup, and trimming. A fully AI-generated video risks inventing behaviour and will usually take longer to correct than a two-minute screen recording.
