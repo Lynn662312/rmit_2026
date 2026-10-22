@@ -1,48 +1,73 @@
-# SafeSpeak: RMIT Hackathon 2026 · Challenge 2 (TideCloak / UNLOCKED)
+# SafeSpeak
 
-A confidential campus bullying / harassment reporting website. The browser encrypts the report with TideCloak, and the server stores only ciphertext. Synthetic data only.
+SafeSpeak is a campus reporting prototype for students facing bullying or harassment. Its calm, focused interface gives students space to speak up and share only what they feel ready to share.
 
-**Team contract and agent prompts:** [docs/SafeSpeak_VSCode_Parallel_Build.md](docs/SafeSpeak_VSCode_Parallel_Build.md). Read sections 0–4 before you start.
+## Project overview
 
-## File structure and ownership
+### 1. Vision & originality
 
-Every file below is a stub with its contract in a header comment. Each owner implements only their own paths.
+SafeSpeak explores a supportive reporting experience that avoids overwhelming students at a difficult moment. A student begins with one simple form, receives a clear submission reference, and can return to previous reports without repeatedly entering the same information.
+
+### 2. Trust constraint insight
+
+Reporting sensitive incidents normally requires students to trust the organisation operating the portal and everyone capable of accessing its systems. Fear of inappropriate access, exposure, or retaliation can prevent a report from being submitted. SafeSpeak separates report metadata from the protected-content experience and makes revealing content an explicit action.
+
+### 3. Value & impact
+
+Students receive a clearer and less intimidating way to document an incident. Investigators receive a focused review workflow, while administrator screens do not automatically present readable report content. This could help institutions hear about incidents that would otherwise remain unreported.
+
+### 4. Why TideCloak matters
+
+The intended TideCloak integration would provide real authentication, permission-aware encryption, and controlled decryption instead of relying only on interface states or ordinary backend access rules. This is important because privacy should be enforced technically, not merely promised. In the current recorded prototype, these security operations are simulated and still require integration and verification.
+
+### 5. Prototype & storytelling
+
+The prototype demonstrates a student submitting synthetic content, viewing submission history, an investigator explicitly revealing and hiding a simulated report, and an administrator-facing state where decryption is unavailable. The role selector demonstrates the intended experience; it does not enforce real security.
+
+## Demo video
+
+[Watch the SafeSpeak demo on YouTube](https://youtu.be/ZXnvC7sGWug)
+
+The two-minute demonstration uses synthetic data and clearly labelled simulated roles and decryption results.
+
+| Time | Website action | What the demo communicates |
+|---|---|---|
+| 0:00–0:20 | Show the SafeSpeak page and wisteria design | A calm, focused place for students to speak up. |
+| 0:20–0:45 | Enter a synthetic report and select **Encrypt & submit** | A simple submission flow without unnecessary identity fields or attachments. |
+| 0:45–1:05 | Select **View my reports** and open the new record | Students can retrieve the report reference, date, and encrypted-content view. |
+| 1:05–1:30 | Switch to Investigator, select the report, reveal it, then hide it | Report content is revealed through an explicit simulated action and can be hidden again. |
+| 1:30–1:45 | Switch to School Admin and show unavailable decryption | The administrator preview illustrates a restricted intended experience. |
+| 1:45–2:00 | Return to the student page | The demonstration closes with the product value and its current security limitation. |
+
+The complete narration is in [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md).
+
+## Current prototype status
+
+- The frontend workflow and role workspaces use synthetic records and preview adapters.
+- The backend implements an in-memory report store, API client, request validation, and route tests.
+- Reports are lost whenever the server restarts.
+- Real TideCloak authentication, permissions, encryption, decryption, and end-to-end verification remain pending.
+- Do not enter real incidents or personal information into this prototype.
+
+## Backend tests
+
+The isolated backend tests do not require TideCloak:
+
+```bash
+node --test "features/api/__tests__/*.test.js"
+```
+
+## Repository layout
 
 ```text
-app/
-├── api/reports/route.js          [C] POST / GET /api/reports
-├── ui-preview/page.jsx           [B] TEMP, remove before submission
-└── security-preview/page.jsx     [A] TEMP, remove before submission
-features/
-├── security/                     [A] useSafeSpeakSecurity.js, serialization.js
-├── ui/                           [B] SafeSpeakApp.jsx, ReportForm.jsx, ReviewPanel.jsx,
-│                                     SafeSpeakApp.module.css, dev/mockAdapters.js (TEMP)
-└── api/                          [C] reportStore.js, reportsClient.js, verifyRequest.js
-docs/                             [D] DEMO_SCRIPT.md, TEST_MATRIX.md, RUN_INSTRUCTIONS.md
-submission/                       [D] summary-draft.md
+app/api/reports/        Report API routes
+app/ui-preview/         Simulated frontend demonstration
+features/api/           Store, validation, API client, and tests
+features/security/      TideCloak integration boundary; real implementation pending
+features/ui/            SafeSpeak student, investigator, and administrator UI
+docs/                   Demo script, API contract, and test documentation
 ```
 
-| Role | Owns | Prompts |
-|---|---|---|
-| A: TideCloak Security | `features/security/`, `app/security-preview/`, all starter-generated files | A1–A3 |
-| B: Frontend | `features/ui/`, `app/ui-preview/` | B1–B2 |
-| C: Backend + Integrator | `features/api/`, `app/api/reports/`, final `app/home/page.jsx` | C1–C3 |
-| D: Delivery | `docs/`, `submission/`, this README at submission | D1–D2 |
+## Team
 
-### Not created yet: the TideCloak starter (Role A)
-
-`package.json`, `app/layout.jsx`, `app/page.jsx`, `app/auth/redirect/`, `middleware.js` / `proxy.js` and the Tide config JSON come from the official starter:
-
-```powershell
-npm init @tidecloak/nextjs@latest safespeak-starter
-```
-
-A generates the starter outside this repo (or in a scratch folder) and copies its files into the repo root unchanged. If the starter uses `src/`, move `app/` and `features/` under `src/` so there is only one app root. `app/home/page.jsx` is created by C at integration time, on whatever post-login route the starter uses.
-
-## Rules
-
-- Edit only the paths you own. Do not touch `package.json`, `app/layout.jsx` or auth redirects unless you are A.
-- Never commit `.env`, credentials, `node_modules/` or `.next/`.
-- Never fake auth, encryption or decryption. Mock adapters are for the UI preview only.
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the branch and PR workflow.
+Built for RMIT Hackathon 2026, Challenge 2: Tide UNLOCKED.
