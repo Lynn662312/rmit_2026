@@ -39,7 +39,9 @@ Keep the actual starter's provider, redirect, and path convention. If it uses `s
 
 ## Temporary preview
 
-`app/ui-preview/page.jsx` is a development-only route, defaulting to the normal reporter view. The top development toolbar and role/state selectors have been removed. A footer explicitly identifies simulated data, sign-in and encryption. It imports `features/ui/dev/mockAdapters.js`. Fixtures are not Tide encryption, authorization, or evidence of successful backend integration. No mock adapter is imported by `SafeSpeakApp` or its production children.
+`app/ui-preview/page.jsx` is a development-only route, defaulting to the normal reporter view. The dark development toolbar and state selector have been removed. A styled Role menu in the header opens on hover or button activation and navigates between Student / Reporter, Investigator and School Admin preview workspaces. A footer explicitly identifies simulated data, sign-in and encryption. It imports `features/ui/dev/mockAdapters.js`. Fixtures are not Tide encryption, authorization, or evidence of successful backend integration. No mock adapter is imported by `SafeSpeakApp` or its production children.
+
+The optional `headerNavigation` React node on `SafeSpeakApp` lets the preview place its Role menu in the header. Existing `<SafeSpeakApp security={security} api={api} />` integration remains unchanged and displays no simulated role switcher. `RoleMenu` only calls its supplied navigation handler; it never grants real account roles. Any production role navigation must use actual account permissions from the security adapter.
 
 Remove the preview route and `features/ui/dev/` during final integration, as required by the team guide. Real login, bearer token verification, role provisioning and cross-account decryption must be tested with A/C's implementations; UI preview results cannot establish those capabilities.
 

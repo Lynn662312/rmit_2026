@@ -6,7 +6,7 @@ import ReviewPanel from './ReviewPanel';
 import { Icon, Wisteria } from './Visuals';
 
 // Role B: presentation only. Real authentication and crypto come from Role A.
-export default function SafeSpeakApp({ security, api }) {
+export default function SafeSpeakApp({ security, api, headerNavigation = null }) {
   const [view, setView] = useState('submit');
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
@@ -26,6 +26,7 @@ export default function SafeSpeakApp({ security, api }) {
     <header className={styles.header}>
       <a className={styles.brand} href="#main-content" aria-label="SafeSpeak, skip to content"><span className={styles.brandMark}><Icon name="sprout" /></span><span>SafeSpeak<span className={styles.purple}>.</span></span></a>
       <span className={styles.headerCaption}>A little space. A stronger voice.</span>
+      {headerNavigation}
       {security.authenticated && <button className={styles.textButton} disabled={pending} onClick={() => authenticate(security.logout)}><Icon name="logout" />Sign out</button>}
     </header>
     <main id="main-content" className={styles.main} tabIndex={-1}>
